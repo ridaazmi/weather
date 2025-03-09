@@ -9,6 +9,16 @@ const API_KEY = process.env.WEATHER_API_KEY || "2b5868c487e0446c8be202559252402"
 const LOCATION = process.env.LOCATION || "Benguerir";
 const COLLECTION_INTERVAL_MINUTES = parseInt(process.env.COLLECTION_INTERVAL_MINUTES || "60");
 
+const server = http.createServer((req, res) => {
+  if (req.url === '/' || req.url === '/ping') {
+    res.writeHead(200, {'Content-Type': 'text/plain'});
+    res.end('Weather Collector is running\n');
+  } else {
+    res.writeHead(404, {'Content-Type': 'text/plain'});
+    res.end('Not Found\n');
+  }
+});
+
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`Serveur démarré sur le port ${port}`);
