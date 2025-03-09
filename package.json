@@ -2,9 +2,9 @@
   "name": "weather-collector",
   "version": "1.0.0",
   "description": "Collecteur automatisé de données météorologiques",
-  "main": "weather_collector.js",
+  "main": "index.js",
   "scripts": {
-    "start": "node weather_collector.js"
+    "start": "node index.js"
   },
   "dependencies": {
     "axios": "^1.6.2",
