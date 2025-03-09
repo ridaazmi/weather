@@ -7,6 +7,11 @@ const API_KEY = process.env.WEATHER_API_KEY || "2b5868c487e0446c8be202559252402"
 const LOCATION = process.env.LOCATION || "Benguerir";
 const COLLECTION_INTERVAL_MINUTES = parseInt(process.env.COLLECTION_INTERVAL_MINUTES || "60");
 
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+  console.log(`Serveur démarré sur le port ${port}`);
+});
+
 // Fonction pour récupérer et stocker les données météo
 async function storeWeatherData() {
   try {
