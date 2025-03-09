@@ -2,7 +2,6 @@ const { MongoClient } = require('mongodb');
 const axios = require('axios');
 const express = require('express');
 const app = express();
-const http = require('http');
 
 // Variables d'environnement (à configurer dans Render)
 const MONGODB_URI = process.env.MONGODB_URI;
@@ -10,18 +9,18 @@ const API_KEY = process.env.WEATHER_API_KEY || "2b5868c487e0446c8be202559252402"
 const LOCATION = process.env.LOCATION || "Benguerir";
 const COLLECTION_INTERVAL_MINUTES = parseInt(process.env.COLLECTION_INTERVAL_MINUTES || "60");
 
-const server = http.createServer((req, res) => {
-  if (req.url === '/' || req.url === '/ping') {
-    res.writeHead(200, {'Content-Type': 'text/plain'});
-    res.end('Weather Collector is running\n');
-  } else {
-    res.writeHead(404, {'Content-Type': 'text/plain'});
-    res.end('Not Found\n');
-  }
+// Ajouter une route pour la racine avec Express
+app.get('/', (req, res) => {
+  res.status(200).send('Weather Collector is running');
+});
+
+// Ajouter une route pour le ping
+app.get('/ping', (req, res) => {
+  res.status(200).send('Weather Collector is running');
 });
 
 const port = process.env.PORT || 3000;
-app.listen(port, () => {
+app.listen(port, '0.0.0.0', () => {
   console.log(`Serveur démarré sur le port ${port}`);
 });
 
