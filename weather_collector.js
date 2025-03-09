@@ -2,6 +2,7 @@ const { MongoClient } = require('mongodb');
 const axios = require('axios');
 const express = require('express');
 const app = express();
+const http = require('http');
 
 // Variables d'environnement (à configurer dans Render)
 const MONGODB_URI = process.env.MONGODB_URI;
